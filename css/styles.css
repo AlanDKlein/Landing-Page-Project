@@ -87,6 +87,11 @@ section {
     color: indigo;
 }
 
+.active_listItem {
+    font-size: large;
+    background-color: darkgray;
+}
+
 /* .navbar__menu .menu__link {
     display: block;
     padding: 1em;

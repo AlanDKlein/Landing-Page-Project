@@ -21,19 +21,20 @@ myButton = document.getElementById("myBtn");
 
 
 // Function to scroll to the top of the document
-let goToTop = () =>  {
+let goToTop = () => {
   document.body.scrollTop = 0; // For Safari
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
 
 
- // Function to scroll to correct section of the document
+// Function to scroll to correct section of the document
 let myFunction = e => {
   // Set the newSection variable to the listItem ID from the nav bar and use it to get the correct section to scroll to.
   let newSection = 'section' + e.currentTarget.id.slice(-1);
   document.getElementById(newSection).scrollIntoView({ behavior: "smooth" });
 
   // Make the newly scrolled-to section the active section by applying the class and remove the class from all other sections.
+
   let activeSection = document.getElementById(newSection);
   for (let section of mySections) {
     if (section.dataset.nav === activeSection.dataset.nav) {
@@ -71,22 +72,43 @@ for (let section of mySections) {
   window.addEventListener("scroll", function () {
     const box = section.getBoundingClientRect();
     const id = section.getAttribute("id");
+    const navItem = "li_id=" + section.dataset.nav;
     if (box.top <= 150 && box.bottom >= 150) {
+      document.getElementById(navItem).classList.add("active_listItem");
       document.getElementById(id).classList.add("your-active-class");
+      section.classList.add("active_listItem");
       section.classList.add("your-active-class");
     } else {
+      document.getElementById(navItem).classList.remove("active_listItem");
       document.getElementById(id).classList.remove("your-active-class");
+      section.classList.remove("active_listItem");
       section.classList.remove("your-active-class");
     }
   });
 }
 
+
+// for (let section of mySections) {
+//   window.addEventListener("scroll", function () {
+//     const box = section.getBoundingClientRect();
+//     const id = section.getAttribute("id");
+//     if (box.top <= 150 && box.bottom >= 150) {
+//       document.getElementById(id).classList.add("your-active-class");
+//       section.classList.add("your-active-class");
+//     } else {
+//       document.getElementById(id).classList.remove("your-active-class");
+//       section.classList.remove("your-active-class");
+//     }
+//   });
+// }
+
+
+
 // Scroll to top of the page when page loads
 goToTop();
 
 // When the user scrolls down 400px from the top of the document, show the button
-  window.onscroll = () => 
-  { 
+window.onscroll = () => {
   if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
     myButton.style.display = "block";
   } else {
